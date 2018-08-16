@@ -95,7 +95,7 @@ def exact_error(pfm, n):
 def calc_info_matrix(pfm, n_occur, correction_type='approx', seq_type='dna'):
     """Calculate information matrix with small sample correction"""
     bases = list(pfm.keys())
-    n = len(pfm.values()[0])
+    n = len(list(pfm.values())[0])
     if correction_type == 'approx':
         error = approximate_error(pfm, n_occur)
     else:
@@ -236,7 +236,7 @@ def create_motif_from_alignment(alignment):
 
 def format_matrix(matrix):
     scores = []
-    for i in range(0, len(matrix[matrix.keys()[0]])):
+    for i in range(0, len(matrix[list(matrix.keys())[0]])):
         row_scores = [(b, matrix[b][i]) for b in matrix.keys()]
         row_scores.sort(key=lambda t: t[1])
         scores.append(row_scores)
